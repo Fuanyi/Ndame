@@ -10,8 +10,16 @@ class FoodSerializer(serializers.ModelSerializer):
         fields = ['name','user','carbohydrate','protein','fats', 'calorie','image', 'category', 'quantity', 'unit',]
 
 class DietSerializer(ModelSerializer):
-    user = UserSerializer(read_only=True, many=True)
-    fooditem = FoodSerializer(read_only=True, many=True)
+    # user = UserSerializer(read_only=True, many=True)
+    # fooditem = FoodSerializer(read_only=True)
     class Meta:
         model = Dietplan
-        fields = ['fooditem', 'DietName', 'user', 'info', 'duration','age']
+        fields = "__all__"
+
+# class ConnectionSerializer(ModelSerializer):
+#     user = UserSerializer(read_only=True, many=True)
+#     sender = UserSerializer(many=True)
+
+#     class Meta:
+#         model = Connection
+#         fields = ['Foodname','recipes','date','category', 'user','sender']

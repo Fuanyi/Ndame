@@ -24,20 +24,21 @@ router = routers.DefaultRouter()
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
 router.register('user', UserViewSet, basename='user')
-router.register('auth/register', RegisterViewSet, basename='auth-register')
-router.register('auth/login', LoginViewSet, basename='auth-login')
-router.register('auth/refresh', RefreshViewSet, basename='auth-refresh')
-router.register('food', FoodModelViewSet)
-router.register('diet', DietModelViewSet)
-router.register('breakfast', BreakfastModelViewSet)
-router.register('diner', DinerModelViewSet)
-router.register('lunch', LunchModelViewSet)
-router.register('snacks', SnacksModelViewSet)
+# router.register('auth/register', RegisterViewSet, basename='auth-register')
+# router.register('auth/login', LoginViewSet, basename='auth-login')
+# router.register('auth/refresh', RefreshViewSet, basename='auth-refresh')
+router.register('food', FoodModelViewSet, basename = "food")
+router.register('diet', DietModelViewSet, basename = "diet")
+router.register('breakfast', BreakfastModelViewSet, basename = "breakfast")
+router.register('diner', DinerModelViewSet, basename = "diner")
+router.register('lunch', LunchModelViewSet, basename = "lunch")
+router.register('snacks', SnacksModelViewSet, basename = "snacks")
 
 urlpatterns = [
+    # router.urls,
     path('admin/', admin.site.urls),
-    *router.urls,
-    # path("", include(router.urls)),
+    
+    path("", include(router.urls)),
     # OpenAPI 3 documentation with Swagger UI
     path("schema/", SpectacularAPIView.as_view(), name="schema"),
     path(
@@ -47,4 +48,5 @@ urlpatterns = [
         ),
         name="swagger-ui",
     ),
+    path('api/', include('finalapp.urls')),
 ]

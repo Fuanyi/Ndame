@@ -11,3 +11,8 @@ class UserSerializer(serializers.ModelSerializer):
         fields = [ 'username', 'first_name', 'last_name', 'email','password',
                   'height', 'weight', 'gender', 'dob', 'profile_image', 'is_active','created','updated',]
         read_only_fields = ['is_active']
+
+    def update(self, instance, validated_data):
+        instance.is_staff = validated_data.get('is_staff', instance.is_staff)
+        instance.save()
+        return instance

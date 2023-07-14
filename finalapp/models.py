@@ -116,11 +116,30 @@ class Fooditem(models.Model):
     
 class Dietplan(models.Model):
     DietName = models.CharField(max_length=150)
+    fooditem = models.ManyToManyField(Fooditem)
     User = models.OneToOneField(User, on_delete=models.CASCADE)
     info = models.TextField(null=True, blank=True)
-    fooditem = models.ForeignKey(Fooditem, on_delete=models.CASCADE)
     duration = models.IntegerField(null=True, blank=True, default=30)
     age = models.IntegerField(null=True, blank=True, default=30)
 
     def __str__(self):
         return str(self.DietName)
+    
+# class Connection(models.Model):
+#     option1 = (
+#         ('breakfast','breakfast'),
+#         ('lunch','lunch'),
+#         ('diner','diner'),
+#         ('snacks','snacks'),
+#     )
+
+#     Foodname = models.CharField(max_length=250)  
+#     category = models.CharField(max_length=40, choices=option1, null=True, blank=True)
+#     recipe = models.TextField(null=True, blank=True)
+#     date = models.DateField(auto_add_now=True, blank=True)
+#     user = models.ForeignKey(User, on_delete=models.CASCADE)
+#     sender = models.ForeignKey(User, on_delete=models.CASCADE)
+    
+
+#     def __str__(self):
+#         return self.Foodname
