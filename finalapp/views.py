@@ -2,33 +2,33 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, AllowAny
 from .models import *
 from .serializers import *
 
 
 # Create your views here.
 class FoodModelViewSet(ModelViewSet):
-    # permission_classes = (IsAuthenticatedOrReadOnly, )
+    permission_classes = (AllowAny,)
     queryset = Fooditem.objects.all()
     serializer_class = FoodSerializer
 
 class DietModelViewSet(ModelViewSet):
-    # permission_classes = (IsAuthenticatedOrReadOnly, )
+    permission_classes = (AllowAny,)
     queryset = Dietplan.objects.all()
     serializer_class = DietSerializer
 
 class BreakfastModelViewSet(ModelViewSet):
-    # permission_classes = (IsAuthenticatedOrReadOnly, )
+    permission_classes = (AllowAny,)
     queryset = Fooditem.objects.filter(category='breakfast')
     serializer_class = FoodSerializer
 
 class LunchModelViewSet(ModelViewSet):
-    # permission_classes = (IsAuthenticatedOrReadOnly, )
+    permission_classes = (AllowAny,)
     queryset = Fooditem.objects.filter(category='lunch')
     serializer_class = FoodSerializer
 class DinerModelViewSet(ModelViewSet):
-    # permission_classes = (IsAuthenticatedOrReadOnly, )
+    permission_classes = (AllowAny,)
     queryset = Fooditem.objects.filter(category='diner')
     serializer_class = FoodSerializer
 
